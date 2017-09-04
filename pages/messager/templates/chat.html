@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <h1>Диалог с {% if dialog.user_from == request.user %}{{ dialog.user_to.username }}{% else %}{{ dialog.user_from.username }}{% endif %}</h1>
+    {% for message in messages %}
+        <div {% if message.user_from == request.user %}style="padding-left: 256px;"{% endif %}>
+            <h3>{{ message.user_from.username }}</h3>
+            {% if message.user_from.profile.avatar %}
+                <img src="{{ message.user_from.profile.avatar_thumb.url }}">
+            {% endif %}
+            <p>{{ message.message }}</p>
+            <p>{{ message.date }}</p>
+        </div>
+    {% endfor %}
+    <h2>Написать сообщение</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Отправить">
+    </form>
+{% endblock %}

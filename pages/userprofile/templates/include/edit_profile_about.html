@@ -1,0 +1,19 @@
+{% if about %}
+    <h2>Обо мне</h2>
+    {% if request.user == people %}
+        <input type="button" id="about-edit" value="Редактировать">
+    {% endif %}
+    <p>Я ищу:</p>
+    <p>{{ about.get_find_display }}</p>
+    <p>Цель знакомства:</p>
+    <p>{{ about.get_purpose_display }}</p>
+    <p>Обо мне:</p>
+    <p>{{ about.about_me }}</p>
+{% elif form and request.user == people %}
+    <h2>Обо мне</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" id="about-submit" value="Сохранить">
+    </form>
+{% endif %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <h1>Удаление фото пользователя {{ user.username }}</h1>
+    <p>Вы точно хотите удалить это фото?</p>
+    <img src="{{ object.image_thumb.url }}">
+    <p>{{ object.description }}</p>
+    <p>{{ object.date }}</p>
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" value="Удалить">
+        <a href="{% url 'user' username=user.username %}">Отмена</a>
+    </form>
+{% endblock %}

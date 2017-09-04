@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <h1>Блог</h1>
+    {% if user.is_authenticated %}
+        <a href="{% url 'blog_create' %}">Написать статью</a>
+    {% endif %}
+    {% for article in blog_list %}
+        <h2><a href="{% url 'blog_detail' pk=article.pk %}">{{ article.title }}</a></h2>
+        <p>{{ article.date|date:"d.m.Y H:i" }}</p>
+        <p>{{ article.article|safe }}</p>
+    {% endfor %}
+    {% include 'include/user/user.html' %}
+{% endblock %}

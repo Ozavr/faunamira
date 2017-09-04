@@ -1,0 +1,13 @@
+{% load staticfiles %}
+
+<h2>Похожие анкеты</h2>
+{% for speop in similar_people %}
+    <h3><a href="{% url 'user' username=speop.username %}">{{ speop.first_name }} ({{ speop.username }}) {{ speop.last_name }}</a></h3>
+    {% if speop.profile.avatar %}
+        <img src="{{ speop.profile.avatar_thumb.url }}">
+    {% endif %}
+{% endfor %}
+<form id="similar_people_form">
+    {% csrf_token %}
+    <input type="button" onclick="get_similar_people('{{ people.username }}')" value="Показать еще">
+</form>

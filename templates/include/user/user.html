@@ -1,0 +1,15 @@
+{% load staticfiles %}
+
+<div style="border: 1px solid">
+    {% if user.is_authenticated or login_user.is_authenticated %}
+        {% include 'include/user/blocks/user.html' %}
+    {% else %}
+        <div id="block_user_login">
+            {% include 'include/user/blocks/login.html' %}
+        </div>
+        <div id="block_user_register">
+            {% include 'include/user/blocks/signup.html' %}
+        </div>
+
+    {% endif %}
+</div>

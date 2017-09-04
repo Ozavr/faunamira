@@ -1,0 +1,11 @@
+{% if user.profile.avatar_thumb %}
+        <img src="{{ user.profile.avatar_thumb.url }}">
+{% endif %}
+<h2><a href="{% url 'user' username=user.username %}">{{ user.first_name }} ({{ user.username }}) {{ user.last_name }}</a></h2>
+
+<a href="{% url 'dialogs' %}">Сообщения</a>
+
+<form id="logout_form" method="post" action="{% url 'account_logout' %}">
+    {% csrf_token %}
+    <button class="primaryAction" type="submit">Выйти</button>
+</form>

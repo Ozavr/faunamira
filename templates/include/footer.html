@@ -1,0 +1,31 @@
+{% load staticfiles %}
+
+<div style="border: 1px solid">
+    <h2>Футер</h2>
+    {% if user.is_authenticated %}
+        {% if user.profile.avatar %}
+            <img src="{{ user.profile.avatar_thumb.url }}">
+        {% endif %}
+        <p><a href="{% url 'user' username=user.username %}">{{ user.first_name }} {{ user.last_name }}</a></p>
+    {% else %}
+        <a href="#block_user">Вход</a>
+        <a href="#block_user">Регистрация</a>
+    {% endif %}
+    <div>
+        <p>Альтернативное меню</p>
+        <ul>
+            {% for fpoint in alt_menu %}
+                <li><a href="{{ fpoint.url }}">{{ fpoint.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div>
+        <p>Социальные сети</p>
+        <ul>
+            <li><a href="{{ link_vk.url }}">Вконтакте</a></li>
+            <li><a href="{{ link_ok.url }}">Одноклассники</a></li>
+            <li><a href="{{ link_fb.url }}">Facebook</a></li>
+            <li><a href="{{ link_in.url }}">Instagram</a></li>
+        </ul>
+    </div>
+</div>

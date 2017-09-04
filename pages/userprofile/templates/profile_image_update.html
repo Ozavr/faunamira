@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <h1>Изменение изображения</h1>
+    <img src="{{ object.image_thumb.url }}">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Изменить">
+        <a href="{% url 'user' username=user.username %}">Отмена</a>
+        <a href="{% url 'user_image_del' pk=object.pk %}">Удалить</a>
+    </form>
+{% endblock %}

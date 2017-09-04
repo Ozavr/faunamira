@@ -1,0 +1,9 @@
+<h2>Вход</h2>
+<form id="login_form">
+    {% csrf_token %}
+    {{ login_form.as_p }}
+    <!--{% if redirect_field_value %}-->
+        <!--<input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />-->
+    <!--{% endif %}-->
+    <button class="primaryAction" id="login_button" type="button">Войти</button>
+</form>

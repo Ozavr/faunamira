@@ -1,0 +1,9 @@
+{% if animals %}
+    <div style="border: 1px solid">
+        <h2>Мои питомцы:</h2>
+        {% for animal in animals %}
+            <img src="{{ animal.avatar_thumb.url }}">
+            <a href="{% url 'animal' pk=animal.pk %}">{{ animal.first_name }}</a>
+        {% endfor %}
+    </div>
+{% endif  %}

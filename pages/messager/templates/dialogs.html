@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <h1>Диалоги - <a href="{% url 'user' username=request.user.username %}">{{ user.username }}</a></h1>
+    <h2>Создать диалог</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Создать диалог">
+    </form>
+    {% if dialogs %}
+        <h2>Диалоги</h2>
+        {% for dia in dialogs %}
+            <div>
+                {% if dia.user_from == request.user %}
+                    <h3><a href="{% url 'message' pk=dia.pk %}">{{ dia.user_to.username }}</a></h3>
+                    {% if dia.user_to.profile.avatar %}
+                        <img src="{{ dia.user_to.profile.avatar_thumb.url }}">
+                    {% endif %}
+                {% elif dia.user_to == request.user %}
+                    <h3><a href="{% url 'message' pk=dia.pk %}">{{ dia.user_from.username }}</a></h3>
+                    {% if dia.user_from.profile.avatar %}
+                        <img src="{{ dia.user_from.profile.avatar_thumb.url }}">
+                    {% endif %}
+                {% endif %}
+                <p>{{ dia.date }}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

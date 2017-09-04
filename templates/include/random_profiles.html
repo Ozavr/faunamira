@@ -1,0 +1,15 @@
+{% load staticfiles  %}
+<div style="border: 1px solid">
+    <h2>Случайные анкеты</h2>
+    {% for ruser in random_users %}
+        <div>
+            <a href="{% url 'user' username=ruser.username %}">
+                {% if ruser.profile.avatar_thumb %}
+                    <img src="{{ ruser.profile.avatar_thumb.url }}">
+                {% else %}
+                    <p>{{ ruser.username }}</p>
+                {% endif %}
+            </a>
+        </div>
+    {% endfor %}
+</div>

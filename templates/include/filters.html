@@ -1,0 +1,16 @@
+{% load staticfiles %}
+<div style="border: 1px solid">
+    <h2>Питомец</h2>
+    <form id="animal_filter">
+        {% csrf_token %}
+        {{ filter_animal_form.as_p }}
+        <input type="button" id="animal_filter_button" value="Найти животное">
+    </form>
+
+    <h2>Хозяин</h2>
+    <form id="people_filter">
+        {% csrf_token %}
+        {{ filter_people_form.as_p }}
+        <input type="button" id="people_filter_button" value="Найти хозяина">
+    </form>
+</div>

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    {% if request.user == object %}
+        <a href="{% url 'user_password' username=user.username %}">Сменить пароль</a>
+    {% endif %}
+    <h1>Изменение пользователя {{ object.username }}</h1>
+    <form method="post" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {{ profile_form.as_p }}
+        <button type="submit">Изменить</button>
+        <a href="{% url 'user' username=object.username %}">Отмена</a>
+    </form>
+{% endblock %}

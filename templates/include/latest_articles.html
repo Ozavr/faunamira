@@ -1,0 +1,12 @@
+<div style="border: 1px solid">
+    <h2>Последние записи в блогах</h2>
+    {% for lart in latest_articles %}
+        <div>
+            <h3><a href="{% url 'blog_detail' pk=lart.pk %}">{{ lart.title }}</a></h3>
+            <p>{{ lart.date }}</p>
+            <p>Автор: {{ lart.user.username }}</p>
+            <p>{{ lart.article|safe|truncatewords:140 }}</p>
+            <a href="{% url 'blog_detail' pk=lart.pk %}">Читать даллее</a>
+        </div>
+    {% endfor %}
+</div>

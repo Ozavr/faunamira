@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <h1>Удаление пользователя</h1>
+    <p>Хотите удалить пользователя {{ user.username }}?</p>
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" value="Удалить">
+        <a href="{% url 'user' username=user.username %}">Отмена</a>
+    </form>
+{% endblock %}

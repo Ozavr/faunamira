@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <h1>Редактирование информации {{ animal.first_name }}</h1>
+    <form id="login_form" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="" type="submit">Редактировать</button>
+    </form>
+{% endblock %}

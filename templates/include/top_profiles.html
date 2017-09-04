@@ -1,0 +1,16 @@
+{% load staticfiles %}
+
+<div style="border: 1px solid">
+    <h2>Самые популярные</h2>
+    {% for tuser in top_users %}
+        <div>
+            <a href="{% url 'user' username=tuser.username %}">
+                {% if tuser.profile.avatar %}
+                    <img src="{{ tuser.profile.avatar_thumb.url }}">
+                {% else %}
+                    <p>{{ tuser.username }}</p>
+                {% endif %}
+            </a>
+        </div>
+    {% endfor %}
+</div>

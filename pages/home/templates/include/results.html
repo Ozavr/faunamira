@@ -1,0 +1,30 @@
+{% load staticfiles %}
+
+<h2>Результаты поиска</h2>
+
+{% if not compl %}
+    <div>
+        <p>По вашему запросу ничего не найдено</p>
+        <h3>Похожие результаты</h3>
+    </div>
+{% endif %}
+{% if animal_results %}
+    <div>
+        {% for animal in animal_results %}
+            <div>
+                <img src="{{ animal.avatar_thumb.url }}">
+                <a href="{% url 'animal' pk=animal.pk %}">{{ animal.first_name }}</a>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+{% if people_results %}
+    <div>
+        {% for people in people_results %}
+            <div>
+                <img src="{{ people.avatar_thumb.url }}">
+                <a href="{% url 'user' username=people.user.username %}">{{ people.user.username }}</a>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
